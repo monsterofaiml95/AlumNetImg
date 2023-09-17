@@ -8,6 +8,7 @@ import session from "express-session";
 const port = 3000;
 const app = express();
 
+
 //middlewares
 app.use(bodyParser.urlencoded({ extended: true }));  //including bodyparser
 app.use(express.static("public"));   //including static files
