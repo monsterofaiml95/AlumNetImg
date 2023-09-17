@@ -68,6 +68,7 @@ body {
     .login-box {
         width: 85%; /* Adjust width for smaller screens */
         padding: 10px; /* Reduce padding for smaller screens */
+        padding-top: 40px;
     }
 
     .login-form input {
@@ -94,6 +95,7 @@ body {
     .login-box {
         width: 85%; /* Adjust width for smaller screens */
         padding: 10px; /* Reduce padding for smaller screens */
+        padding-top: 60px;
     }
 
     .login-form input {
@@ -175,6 +177,7 @@ body {
 }
 .error-message {
     color: #ff0000; /* Change the text color to red */
+    font-size: 22px;
 }
     </style>
 </head>
@@ -188,10 +191,10 @@ body {
     </section>
     <section class="text-box login-box">
         <h1>Register For AlumNet</h1>
-        <div id="error-message" class="error-message">This Roll or Aadhar does not exits in our database</div>
-        <form class="login-form" action="login_process.php" method="POST">
-            <input type="text" name="username" placeholder="Roll No" required>
-            <input type="password" name="password" placeholder="Aadhaar" required>
+        <div id="error-message" class="error-message"><%= message %></div>
+        <form class="login-form" action="/register" method="POST">
+            <input type="number" name="rollNo" placeholder="Roll No" required>
+            <input type="number" name="Aadhaar" placeholder="Aadhaar" required>
             <button class="hero-btn" type="submit">Register</button>
         </form>
         <!-- <p class="ptag"><a href="register.html">Forget Password</a></p> -->
