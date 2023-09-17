@@ -24,7 +24,7 @@ app.set("view engine", "ejs");
 
 
 //connecting to the database
-mongoose.connect("mongodb://127.0.0.1:27017/aluminiDB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://AlumNet164:AlumNet@1234@alumnet.xqckivy.mongodb.net/pSiTdB", { useNewUrlParser: true });
 
 //making a schema
 const aluminiSchema = new mongoose.Schema({
