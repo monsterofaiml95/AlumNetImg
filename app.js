@@ -19,6 +19,32 @@ app.use(
     })
 );
 
+
+//connecting to the database
+mongoose.connect("mongodb://127.0.0.1:27017/aluminiDB", { useNewUrlParser: true });
+
+//making a schema
+const aluminiSchema = new mongoose.Schema({
+    _id: Number,
+    Aadhaar: Number,
+    Name: String,
+    Branch: String,
+    PassingYear: Number
+});
+
+
+//making mongoose model
+const userDetails = new mongoose.model("aluminiDetail", aluminiSchema);
+
+// const user = new userDetails({           //some test users added for testing purpose
+//     _id: 1002,
+//     Aadhaar: 5002,
+//     Name: "testUser2",
+//     Branch: "testBranch2",
+//     PassingYear: 2026
+// });
+
+
 //handling get request of homepage
 app.get("/", (req, res) => {
     res.render("index.ejs");
