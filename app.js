@@ -21,10 +21,9 @@ app.use(
 );
 app.set("view engine", "ejs");
 
-
-
 //connecting to the database
-mongoose.connect("mongodb+srv://AlumNet164:AlumNet@1234@alumnet.xqckivy.mongodb.net/pSiTdB", { useNewUrlParser: true });
+mongoose.connect("mongodb+srv://alumnetpsit:lChuqrU4FUCmSRuT@cluster0.xzif614.mongodb.net/AluminiDB", { useNewUrlParser: true });
+
 
 //making a schema
 const aluminiSchema = new mongoose.Schema({
@@ -33,21 +32,26 @@ const aluminiSchema = new mongoose.Schema({
     Password: String,
     Name: String,
     Branch: String,
-    PassingYear: Number
+    PassingYear: Number,
+    FirstName: String,
+    LastName: String
 });
 
 
 //making mongoose model
 const userDetails = new mongoose.model("aluminiDetail", aluminiSchema);
 
-// const user = new userDetails({           //some test users added for testing purpose
-//     _id: 1002,
-//     Aadhaar: 5002,
-//     Name: "testUser2",
-//     Branch: "testBranch2",
-//     PassingYear: 2026
-// });
-
+const user = new userDetails({           //some test users added for testing purpose
+    _id: 1003,
+    Aadhaar: 5003,
+    Name: "testUser3",
+    Branch: "testBranch3",
+    PassingYear: 2026,
+    FirstName: "test3",
+    LastName: "user3",
+    Password: "as"
+});
+user.save();
 
 //handling get request of homepage
 app.get("/", (req, res) => {
