@@ -41,17 +41,17 @@ const aluminiSchema = new mongoose.Schema({
 //making mongoose model
 const userDetails = new mongoose.model("aluminiDetail", aluminiSchema);
 
-const user = new userDetails({           //some test users added for testing purpose
-    _id: 1003,
-    Aadhaar: 5003,
-    Name: "testUser3",
-    Branch: "testBranch3",
-    PassingYear: 2026,
-    FirstName: "test3",
-    LastName: "user3",
-    Password: "as"
-});
-user.save();
+// const user = new userDetails({           //some test users added for testing purpose
+//     _id: 1003,
+//     Aadhaar: 5003,
+//     Name: "testUser3",
+//     Branch: "testBranch3",
+//     PassingYear: 2026,
+//     FirstName: "test3",
+//     LastName: "user3",
+//     Password: "as"
+// });
+// user.save();
 
 //handling get request of homepage
 app.get("/", (req, res) => {
