@@ -8,6 +8,9 @@ import session from "express-session";
 const port = 3000;
 const app = express();
 
+// creating roll no. variable for creating profile
+
+let rollNo;
 
 //middlewares
 app.use(bodyParser.urlencoded({ extended: true }));  //including bodyparser
@@ -39,7 +42,7 @@ const aluminiSchema = new mongoose.Schema({
 
 
 //making mongoose model
-const userDetails = new mongoose.model("aluminiDetail", aluminiSchema);
+const userDetails = new mongoose.model("aluminidetail", aluminiSchema);
 
 // const user = new userDetails({           //some test users added for testing purpose
 //     _id: 1003,
@@ -72,6 +75,7 @@ app.get("/login", (req, res) => {
 
 //handling post requests for login
 app.post("/login", (req, res) => {
+    rollNo = req.body.rollNo;
     userDetails.find({ _id: parseInt((req.body.rollNo).trim()) })
         .then(user => {
             if (user.length === 0) {
@@ -182,6 +186,20 @@ app.get("/account", (req, res) => {
     } else {
         res.redirect("/login");
     }
+});
+
+// handeling client profile page
+app.get("/account/profile", (req,res)=>{
+    userDetails.find({_id:rollNo})
+    .then(details=>{
+        console.log(details[0].Name)
+        res.render("profile.ejs",{
+        array : details
+        });
+    })
+    .catch(err=>{
+        console.log(err);
+    })
 });
 
 //listening on conventional port
