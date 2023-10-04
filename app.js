@@ -30,29 +30,48 @@ mongoose.connect("mongodb+srv://alumnetpsit:lChuqrU4FUCmSRuT@cluster0.xzif614.mo
 //making a schema
 const aluminiSchema = new mongoose.Schema({
     _id: Number,
-    Aadhaar: Number,
     Password: String,
     Email: String,
     Name: String,
     Branch: String,
     PassingYear: Number,
     FirstName: String,
-    LastName: String
+    LastName: String,
+    Gender:String,
+    Branch:String,
+    Mobile:Number,
+    X_BOARD:String,
+    XII_BOARD:String,
+    X_PERCENT:String,
+    XII_PERCENT:String,
+    COMPANY_1:String,
+    COMPANY_2:String,
+    COMPANY_3:String,
+    COMPANY_4:String,
+    COMPANY_5:String,
+    PACKAGE_1:String,
+    PACKAGE_2:String,
+    PACKAGE_3:String,
+    PACKAGE_4:String,
+    PACKAGE_5:String,
 });
 
 
 //making mongoose model
-const userDetails = new mongoose.model("aluminidetail", aluminiSchema);
+const userDetails = new mongoose.model("aluminidetail1s", aluminiSchema);
 
 // const user = new userDetails({           //some test users added for testing purpose
-//     _id: 1003,
-//     Aadhaar: 5003,
-//     Name: "testUser3",
-//     Branch: "testBranch3",
-//     PassingYear: 2026,
+//     _id: 1002,
+//     Name: "testUser2",
+//     Branch: "testBranch2",
+//     PassingYear: 2023,
 //     FirstName: "test3",
 //     LastName: "user3",
-//     Password: "as"
+//     Password: "as",
+//     Email:"aaa684617@gmail.com",
+//     Mobile:1234567890,
+//     Gender:"Male",
+//     College:"PSIT",
 // });
 // user.save();
 
@@ -455,7 +474,9 @@ app.get("/account/profile", (req, res) => {
     if (req.session.isAuthorised) {
         userDetails.find({ _id: req.session.userId })
             .then(details => {
-                console.log(details[0].Name)
+                // console.log(details[0].Name)
+                console.log(details);
+                console.log(details[0].Gender);
                 res.render("profile.ejs", {
                     array: details
                 });
