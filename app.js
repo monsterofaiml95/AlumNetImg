@@ -30,14 +30,35 @@ mongoose.connect("mongodb+srv://alumnetpsit:lChuqrU4FUCmSRuT@cluster0.xzif614.mo
 //making a schema
 const aluminiSchema = new mongoose.Schema({
     _id: Number,
-    Aadhaar: Number,
+    // Aadhaar: Number,
     Password: String,
     Email: String,
     Name: String,
     Branch: String,
     PassingYear: Number,
     FirstName: String,
-    LastName: String
+    LastName: String,
+    // New added details
+    GENDER: String,
+    Mobile: Number,
+    X_BOARD:String,
+    XII_BOARD:String,
+    X_PERCENT:String,
+    XII_PERCENT:String,
+// Companies
+    COMPANY_1:String,
+    COMPANY_2:String,
+    COMPANY_3:String,
+    COMPANY_4:String,
+    COMPANY_5:String,
+    COMPANY_6:String,
+// Packages
+    PACKAGE_1:String,
+    PACKAGE_2:String,
+    PACKAGE_3:String,
+    PACKAGE_4:String,
+    PACKAGE_5:String,
+    PACKAGE_6:String,
 });
 
 
