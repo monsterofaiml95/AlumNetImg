@@ -288,10 +288,10 @@
                 <ul>
                     <li><a href="/account/profile">Profile</a></li>
                     <li><a href="">Job Information</a></li>
+                    <li><a href="">Contact</a></li>
                     <li><a href="">Post Jobs & Internships</a></li>
                     <li><a href="">Events & Webinars</a></li>
                     <li><a href="">Alumni Stories</a></li>
-                    <li><a href="">Contact</a></li>
                 </ul>
             </div>
         </nav>
@@ -314,13 +314,21 @@
                         <label for="passingYear" class="profile-label">Graduation Year:</label>
                         <input type="number" id="passingYear" name="passingYear" class="profile-input" min="1900" max="2099" value="<%= array[0].PassingYear %>" readonly>
                     </div>
+                    <div class="profile-item">
+                        <label for="passingYear" class="profile-label">Gender:</label>
+                        <input type="number" id="passingYear" name="passingYear" class="profile-input" min="1900" max="2099" value="<%= array[0].GENDER %>" readonly>
+                    </div>
+                    <div class="profile-item">
+                        <label for="passingYear" class="profile-label">10<sup>th</sup> %</label>
+                        <input type="number" id="passingYear" name="passingYear" class="profile-input" min="1900" max="2099" value="<%= array[0].X_ %>" readonly>
+                    </div>
                 </div><% } %>
                 <!-- Image Upload Section -->
-                <div class="image-upload-container">
+                <!-- <div class="image-upload-container">
                     <img id="imagePreview" alt="">
                     <label for="imageUpload" class="image-upload-label">Upload Image</label>
                     <input type="file" id="imageUpload" accept="image/*" onchange="previewImage();">
-                </div>
+                </div> -->
                 <br>
             </div>
         </form>
