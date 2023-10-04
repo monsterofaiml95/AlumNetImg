@@ -468,6 +468,12 @@ app.get("/account/profile", (req, res) => {
     }
 });
 
+app.get("/logout",(req,res)=>{
+    req.session.destroy();
+    res.redirect("/");
+});
+
+
 //listening on conventional port
 app.listen(port, () => {
     console.log(`Server Started On Port ${port}`);
