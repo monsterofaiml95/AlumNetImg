@@ -213,11 +213,10 @@
           right: -100%; /* Initially off the screen */
           height: 100vh;
           width: 100%; /* Full width */
-          background-color: rgba(
+          background-color: rgb(
             46,
             204,
-            112,
-            0.7
+            112
           ); /* Transparent green background */
           z-index: 100;
           flex-direction: column;
@@ -280,6 +279,20 @@
 
         .profile-section:hover {
           box-shadow: none;
+        }
+      }
+      .menu-icon {
+        z-index: 101; /* Ensure the icon is above the menu */
+      }
+
+      @media only screen and (max-width: 768px) {
+        .nav-links {
+          /* Other styles */
+          z-index: 100; /* Ensure the menu is below the icon */
+        }
+        .menu-icon {
+          margin-right: 15px;
+          font-size: 25px;
         }
       }
     </style>
