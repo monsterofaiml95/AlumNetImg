@@ -489,10 +489,47 @@ app.get("/account/profile", (req, res) => {
     }
 });
 
+// handeling user Contact Info route
+
+app.get("/userContact", (req, res) => {
+    if (req.session.isAuthorised) {
+        userDetails.find({ _id: req.session.userId })
+            .then(details => {
+                // console.log(details[0].Name)
+                console.log(details);
+                console.log(details[0].Gender);
+                res.render("userContactInfo.ejs", {
+                    array: details
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.redirect("/login");
+    }
+});
+
+app.post("/userContact", (req, res) => {
+    if (req.session.isAuthorised) {
+        userDetails.updateOne({ _id: req.session.userId }, {Mobile:req.body.Mobile, Email: req.body.Email})
+            .then(()=> {
+                res.redirect("/userContact");
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    } else {
+        res.redirect("/login");
+    }
+});
+
 app.get("/logout",(req,res)=>{
     req.session.destroy();
     res.redirect("/");
 });
+
+
 
 
 //listening on conventional port
