@@ -206,10 +206,6 @@
         background-color: green;
       }
 
-      .profile-input:hover{
-        cursor:no-drop;
-      }
-
       @media only screen and (max-width: 768px) {
         .nav-links {
           position: fixed;
@@ -301,7 +297,7 @@
           <ul>
             <li><a href="/account/profile">Profile</a></li>
             <li><a href="">Job Information</a></li>
-            <li><a href="/userContact">Contact</a></li>
+            <li><a href="">Contact</a></li>
             <li><a href="">Post Jobs & Internships</a></li>
             <li><a href="">Events & Webinars</a></li>
             <li><a href="">Alumni Stories</a></li>
@@ -312,91 +308,33 @@
 
     <div class="profile-section">
       <div class="profile-title">My Profile</div>
-      <form>
+      <form action="/userContact" method="post">
         <div class="form-content">
           <div>
             <% if (locals.array){ %>
             <div class="profile-item">
-              <label for="name" class="profile-label">Name:</label>
+              <label for="name" class="profile-label">Mobile:</label>
               <input
-                type="text"
+                type="number"
                 id="name"
-                name="name"
+                name="Mobile"
                 class="profile-input"
-                value="<%= array[0].Name %>"
-                readonly
+                value="<%= array[0].Mobile %>"
               />
             </div>
             <div class="profile-item">
-              <label for="branch" class="profile-label">Major:</label>
+              <label for="branch" class="profile-label">Email:</label>
               <input
                 type="text"
                 id="branch"
-                name="branch"
+                name="Email"
                 class="profile-input"
-                value="<%= array[0].Branch %>"
-                readonly
+                value="<%= array[0].Email %>"
               />
             </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label"
-                >Graduation Year:</label
-              >
-              <input
-                type="number"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].PassingYear %>"
-                readonly
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">Gender:</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].Gender %>"
-                readonly
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label"
-                >10<sup>th</sup> %</label
-              >
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].X_PERCENT%>"
-                readonly
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label"
-                >12<sup>th</sup> %</label
-              >
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].XII_PERCENT%>"
-                readonly
-              />
-            </div>
+            
           </div>
+          <button type="submit" class="image-upload-label" style="height: 50px;">Update</button>
           <% } %>
           <!-- Image Upload Section -->
           <!-- <div class="image-upload-container">
