@@ -206,10 +206,6 @@
         background-color: green;
       }
 
-      .profile-input:hover {
-        cursor: no-drop;
-      }
-
       @media only screen and (max-width: 768px) {
         .nav-links {
           position: fixed;
@@ -300,7 +296,7 @@
         <div class="nav-links" id="navLinks">
           <ul>
             <li><a href="/account/profile">Profile</a></li>
-            <li><a href="/jobDetails">Job Information</a></li>
+            <li><a href="">Job Information</a></li>
             <li><a href="/userContact">Contact</a></li>
             <li><a href="/uploadJob">Post Jobs & Internships</a></li>
             <li><a href="">Events & Webinars</a></li>
@@ -312,50 +308,33 @@
     </section>
 
     <div class="profile-section">
-      <div class="profile-title">My Profile</div>
-      <form>
+      <div class="profile-title">Job Details</div>
+      <form method="post" action="/jobDetails">
         <div class="form-content">
           <div>
             <% if (locals.array){ %>
             <div class="profile-item">
-              <label for="name" class="profile-label">Name:</label>
+              <label for="name" class="profile-label">COMPANY_1</label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 class="profile-input"
-                value="<%= array[0].Name %>"
-                readonly
+                value="<%= array[0].COMPANY_1 %>"
               />
             </div>
             <div class="profile-item">
-              <label for="branch" class="profile-label">Major:</label>
+              <label for="branch" class="profile-label">PACKAGE_1</label>
               <input
                 type="text"
                 id="branch"
                 name="branch"
                 class="profile-input"
-                value="<%= array[0].Branch %>"
-                readonly
+                value="<%= array[0].PACKAGE_1%>"
               />
             </div>
             <div class="profile-item">
-              <label for="passingYear" class="profile-label"
-                >Graduation Year:</label
-              >
-              <input
-                type="number"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].PassingYear %>"
-                readonly
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">Gender:</label>
+              <label for="passingYear" class="profile-label">COMPANY_2</label>
               <input
                 type="text"
                 id="passingYear"
@@ -363,14 +342,11 @@
                 class="profile-input"
                 min="1900"
                 max="2099"
-                value="<%= array[0].Gender %>"
-                readonly
+                value="<%= array[0].COMPANY_2 %>"
               />
             </div>
             <div class="profile-item">
-              <label for="passingYear" class="profile-label"
-                >10<sup>th</sup> Percentage</label
-              >
+              <label for="passingYear" class="profile-label">PACKAGE_2</label>
               <input
                 type="text"
                 id="passingYear"
@@ -378,14 +354,11 @@
                 class="profile-input"
                 min="1900"
                 max="2099"
-                value="<%= array[0].X_PERCENT%>%"
-                readonly
+                value="<%= array[0].PACKAGE_2 %>"
               />
             </div>
             <div class="profile-item">
-              <label for="passingYear" class="profile-label"
-                >12<sup>th</sup> Percentage</label
-              >
+              <label for="passingYear" class="profile-label">COMPANY_3</label>
               <input
                 type="text"
                 id="passingYear"
@@ -393,20 +366,70 @@
                 class="profile-input"
                 min="1900"
                 max="2099"
-                value="<%= array[0].XII_PERCENT%>%"
-                readonly
+                value="<%= array[0].COMPANY_3%>"
+              />
+            </div>
+            <div class="profile-item">
+              <label for="passingYear" class="profile-label">PACKAGE_3</label>
+              <input
+                type="text"
+                id="passingYear"
+                name="passingYear"
+                class="profile-input"
+                min="1900"
+                max="2099"
+                value="<%= array[0].PACKAGE_3%>"
+              />
+            </div>
+            <div class="profile-item">
+              <label for="name" class="profile-label">COMPANY_4</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                class="profile-input"
+                value="<%= array[0].COMPANY_4 %>"
+              />
+            </div>
+            <div class="profile-item">
+              <label for="branch" class="profile-label">PACKAGE_4</label>
+              <input
+                type="text"
+                id="branch"
+                name="branch"
+                class="profile-input"
+                value="<%= array[0].PACKAGE_4%>"
+              />
+            </div>
+            <div class="profile-item">
+              <label for="passingYear" class="profile-label">COMPANY_5</label>
+              <input
+                type="text"
+                id="passingYear"
+                name="passingYear"
+                class="profile-input"
+                min="1900"
+                max="2099"
+                value="<%= array[0].COMPANY_5 %>"
+              />
+            </div>
+            <div class="profile-item">
+              <label for="passingYear" class="profile-label">PACKAGE_5</label>
+              <input
+                type="text"
+                id="passingYear"
+                name="passingYear"
+                class="profile-input"
+                min="1900"
+                max="2099"
+                value="<%= array[0].PACKAGE_5 %>"
               />
             </div>
           </div>
           <% } %>
-          <!-- Image Upload Section -->
-          <!-- <div class="image-upload-container">
-                    <img id="imagePreview" alt="">
-                    <label for="imageUpload" class="image-upload-label">Upload Image</label>
-                    <input type="file" id="imageUpload" accept="image/*" onchange="previewImage();">
-                </div> -->
           <br />
         </div>
+        <button type="submit" class="image-upload-label">Update</button>
       </form>
     </div>
 

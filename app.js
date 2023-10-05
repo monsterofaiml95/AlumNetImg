@@ -524,13 +524,36 @@ app.post("/userContact", (req, res) => {
     }
 });
 
+//handling upload job get requets
 app.get("/uploadJob",(req,res)=>{
     if(req.session.isAuthorised){
         res.render("postjob.ejs");
     }else{
         res.redirect("/login");
     }
-})
+});
+
+
+//handling jobDetails get requests
+app.get("/jobDetails",(req,res)=>{
+    if(req.session.isAuthorised){
+        userDetails.find({ _id: req.session.userId })
+            .then(details => {
+                // console.log(details[0].Name)
+                console.log(details);
+                console.log(details[0].Gender);
+                res.render("jobDetails.ejs", {
+                    array: details
+                });
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }else{
+        res.redirect("/login");
+    }
+});
+
 
 app.get("/logout",(req,res)=>{
     req.session.destroy();
