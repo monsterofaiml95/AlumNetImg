@@ -524,6 +524,14 @@ app.post("/userContact", (req, res) => {
     }
 });
 
+app.get("/uploadJob",(req,res)=>{
+    if(req.session.isAuthorised){
+        res.render("postjob.ejs");
+    }else{
+        res.redirect("/login");
+    }
+})
+
 app.get("/logout",(req,res)=>{
     req.session.destroy();
     res.redirect("/");

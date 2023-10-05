@@ -308,38 +308,24 @@
     </section>
 
     <div class="profile-section">
-      <div class="profile-title">My Profile</div>
-      <form action="/userContact" method="post">
+      <div class="profile-title">Upload-Jobs</div>
+      <form action="/uploadjob" method="post">
         <div class="form-content">
           <div>
-            <% if (locals.array){ %>
             <div class="profile-item">
-              <label for="name" class="profile-label">Mobile:</label>
+              <label for="name" class="profile-label">Document</label>
               <input
-                type="number"
+                type="file"
                 id="name"
                 name="Mobile"
                 class="profile-input"
-                value="<%= array[0].Mobile %>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="branch" class="profile-label">Email:</label>
-              <input
-                type="text"
-                id="branch"
-                name="Email"
-                class="profile-input"
-                value="<%= array[0].Email %>"
+                required
               />
             </div>
           </div>
-          <% } %>
           <br />
         </div>
-        <button type="submit" class="image-upload-label" style="height: 50px">
-          Update
-        </button>
+        <button type="submit" class="image-upload-label">Upload</button>
       </form>
     </div>
 
