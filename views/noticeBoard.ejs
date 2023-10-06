@@ -194,16 +194,17 @@
 
       .image-upload-label {
         display: inline-block;
-        background: rgb(7, 164, 96);
+        background: rgb(213, 247, 232);
         color: #ffffff;
         padding: 5px 10px;
         border-radius: 3px;
         cursor: pointer;
         transition: background-color 0.3s ease;
+        margin-bottom: 10px;
       }
 
       .image-upload-label:hover {
-        background-color: green;
+        border: 3px solid rgba(0, 103, 43, 0.835);
       }
 
       @media only screen and (max-width: 768px) {
@@ -213,10 +214,11 @@
           right: -100%; /* Initially off the screen */
           height: 100vh;
           width: 100%; /* Full width */
-          background-color: rgb(
+          background-color: rgba(
             46,
             204,
-            112
+            112,
+            0.7
           ); /* Transparent green background */
           z-index: 100;
           flex-direction: column;
@@ -281,20 +283,6 @@
           box-shadow: none;
         }
       }
-      .menu-icon {
-        z-index: 101; /* Ensure the icon is above the menu */
-      }
-
-      @media only screen and (max-width: 768px) {
-        .nav-links {
-          /* Other styles */
-          z-index: 100; /* Ensure the menu is below the icon */
-        }
-        .menu-icon {
-          margin-right: 15px;
-          font-size: 25px;
-        }
-      }
     </style>
   </head>
 
@@ -309,11 +297,11 @@
         <div class="nav-links" id="navLinks">
           <ul>
             <li><a href="/account/profile">Profile</a></li>
-            <li><a href="">Job Information</a></li>
+            <li><a href="/jobDetails">Job Information</a></li>
             <li><a href="/userContact">Contact</a></li>
             <li><a href="/uploadJob">Post Jobs & Internships</a></li>
             <li><a href="">Events & Webinars</a></li>
-            <li><a href="/noticeBoard">Notice Board</a></li>
+            <li><a href="">Alumni Stories</a></li>
             <li><a href="/logout">LogOut</a></li>
           </ul>
         </div>
@@ -321,129 +309,16 @@
     </section>
 
     <div class="profile-section">
-      <div class="profile-title">Job Details</div>
-      <form method="post" action="/jobDetails">
-        <div class="form-content">
-          <div>
-            <% if (locals.array){ %>
-            <div class="profile-item">
-              <label for="name" class="profile-label">COMPANY_1</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="profile-input"
-                value="<%= array[0].COMPANY_1 %>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="branch" class="profile-label">PACKAGE_1</label>
-              <input
-                type="text"
-                id="branch"
-                name="branch"
-                class="profile-input"
-                value="<%= array[0].PACKAGE_1%>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">COMPANY_2</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].COMPANY_2 %>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">PACKAGE_2</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].PACKAGE_2 %>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">COMPANY_3</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].COMPANY_3%>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">PACKAGE_3</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].PACKAGE_3%>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="name" class="profile-label">COMPANY_4</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                class="profile-input"
-                value="<%= array[0].COMPANY_4 %>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="branch" class="profile-label">PACKAGE_4</label>
-              <input
-                type="text"
-                id="branch"
-                name="branch"
-                class="profile-input"
-                value="<%= array[0].PACKAGE_4%>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">COMPANY_5</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].COMPANY_5 %>"
-              />
-            </div>
-            <div class="profile-item">
-              <label for="passingYear" class="profile-label">PACKAGE_5</label>
-              <input
-                type="text"
-                id="passingYear"
-                name="passingYear"
-                class="profile-input"
-                min="1900"
-                max="2099"
-                value="<%= array[0].PACKAGE_5 %>"
-              />
-            </div>
-          </div>
-          <% } %>
-          <br />
+      <div class="profile-title"><u>NOTICE BOARD</u></div>
+      <ul>
+          <% documents.forEach(document => { %>
+            <div class="image-upload-label">
+          <li type="none">
+            <a href="/download/<%= document._id %>"><u><%= document.name %></u></a>
+          </li>
         </div>
-        <button type="submit" class="image-upload-label">Update</button>
-      </form>
+          <% }); %>
+      </ul>
     </div>
 
     <script>

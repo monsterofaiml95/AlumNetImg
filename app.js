@@ -5,6 +5,7 @@ import bodyParser from "body-parser"
 import session from "express-session";
 import nodemailer from "nodemailer";
 import dotenv from 'dotenv';
+import multer from 'multer';
 dotenv.config();
 
 
@@ -25,7 +26,6 @@ app.set("view engine", "ejs");
 
 //connecting to the database
 mongoose.connect("mongodb+srv://alumnetpsit:lChuqrU4FUCmSRuT@cluster0.xzif614.mongodb.net/AluminiDB", { useNewUrlParser: true });
-
 
 //making a schema
 const aluminiSchema = new mongoose.Schema({
@@ -553,6 +553,53 @@ app.get("/jobDetails",(req,res)=>{
         res.redirect("/login");
     }
 });
+
+// handeling notice board request
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+const Document = mongoose.model('Document', {
+    name: String,
+    data: Buffer,
+});
+
+app.get("/noticeBoard", (req,res)=> {
+    if(req.session.isAuthorised){
+        Document.find()
+        .then((documents) => {
+            res.render('noticeBoard.ejs', { documents });
+        })
+        .catch((error) => {
+            console.error('Error fetching documents:', error);
+            res.status(500).send('Error fetching documents.');
+        });
+    }
+    else{
+        res.redirect("/login");
+    }
+});
+
+app.get('/download/:id', (req, res) => {
+    const documentId = req.params.id;
+
+    Document.findById(documentId)
+        .then((document) => {
+            if (!document) {
+                return res.status(404).send('Document not found.');
+            }
+
+            res.setHeader('Content-Disposition', `attachment; filename="${document.name}"`);
+            res.setHeader('Content-Type', 'application/octet-stream');
+            res.send(document.data);
+        })
+        .catch((error) => {
+            console.error('Error fetching document:', error);
+            res.status(500).send('Error fetching document.');
+        });
+});
+
+
 
 
 app.get("/logout",(req,res)=>{
