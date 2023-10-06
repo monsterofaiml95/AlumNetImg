@@ -414,11 +414,22 @@
           </div>
           <% } %>
           <!-- Image Upload Section -->
-          <!-- <div class="image-upload-container">
-                    <img id="imagePreview" alt="">
-                    <label for="imageUpload" class="image-upload-label">Upload Image</label>
-                    <input type="file" id="imageUpload" accept="image/*" onchange="previewImage();">
-                </div> -->
+           <div class="image-upload-container">
+       
+            <div class="image-upload-container">
+              <% if (aluminiData && aluminiData.image && aluminiData.image.data) { %>
+                <!-- Display the image if it exists -->
+                <img src="data:<%= aluminiData.image.contentType %>;base64,<%= aluminiData.image.data.toString('base64') %>" alt="User Image" height="150px" width="150px" />
+            <% } else { %>
+                <!-- Display a placeholder or message if no image is available -->
+                <p>No image available.</p>
+            <% } %>
+          </div>
+          
+
+                    <img  alt="">
+                    
+                </div> 
           <br />
         </div>
       </form>
