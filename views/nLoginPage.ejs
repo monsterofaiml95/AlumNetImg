@@ -6,6 +6,9 @@
     <title>Login - AlumNet</title>
     <link rel="stylesheet" href="newResponsiveHomepage.css">
     <link rel="Webpage Icon" href="/PSIT_logo_green.svg" style="fill: green;">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans&display=swap" rel="stylesheet">
     <!-- Link to your CSS file for the login page -->
     <style>
         /* Import your common styles from ResponsiveHomepage.css */
@@ -16,6 +19,7 @@ body {
     background-position: center;
     background-size: cover;
     background-attachment: fixed; /* Fixed background image */
+    font-family: 'Work Sans', sans-serif;
 }
 
 .login-box {
@@ -62,6 +66,9 @@ body {
     background: #2ecc70c7; /* Slightly transparent on hover */
 }
 
+.font{
+    font-family: 'Work Sans', sans-serif;
+}
 
 /* Media query for responsiveness */
 /* Media query for responsiveness */
@@ -189,20 +196,20 @@ body {
         <!-- Header content from your "Get Started" page -->
         <nav>
             <a href="/"><img src=".//PSIT_logo_green.svg" alt="psit-logo" id="psit-logo"></a>
-            <h1><u>Alum</u><u class="ul"><span>Net</u></span></h1>
+            <h1 style="font-family: 'Work Sans', sans-serif;"><u>Alum</u><u class="ul"><span>Net</u></span></h1>
         </nav>
     </section>
 
     <section class="text-box login-box">
-        <h1>Login to AlumNet</h1>
+        <h1 style="font-family: 'Work Sans', sans-serif;">Login to AlumNet</h1>
         <div id="error-message" class="error-message"><%= message %></div>
         <form class="login-form" action="/login" method="POST">
-            <input type="number" name="rollNo" placeholder="Roll number" required>
-            <input type="password" name="password" placeholder="Password" required>
-            <button class="hero-btn" type="submit">Login</button>
+            <input type="number" name="rollNo" placeholder="Roll number"  class="font">
+            <input type="password" name="password" placeholder="Password"  class="font">
+            <button class="hero-btn font" type="submit" >Login</button>
         </form>
-        <p class="ptag"><a href="/fgtPassword">Forget Password</a></p>
-        <p class="ptag">Not a member of alumNet? <a href="/register">Register</a></p>
+        <p class="ptag font"><a href="/fgtPassword">Forget Password</a></p>
+        <p class="ptag font">Not a member of alumNet? <a href="/register" class="font">Register</a></p>
     </section>
 
     <!-- Footer and other sections if needed -->
