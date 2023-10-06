@@ -6,12 +6,17 @@ import session from "express-session";
 import nodemailer from "nodemailer";
 import dotenv from 'dotenv';
 import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 dotenv.config();
 
 
 const port = 3000;
 const app = express();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 //middlewares
 app.use(bodyParser.urlencoded({ extended: true }));  //including bodyparser
 app.use(express.static("public"));   //including static files
@@ -54,7 +59,11 @@ const aluminiSchema = new mongoose.Schema({
     PACKAGE_3:String,
     PACKAGE_4:String,
     PACKAGE_5:String,
-});
+    image: {
+        data: Buffer,
+        contentType: String,
+      }
+} ,{ collection: 'aluminidetail1s' });
 
 
 //making mongoose model
@@ -475,10 +484,9 @@ app.get("/account/profile", (req, res) => {
         userDetails.find({ _id: req.session.userId })
             .then(details => {
                 // console.log(details[0].Name)
-                console.log(details);
-                console.log(details[0].Gender);
-                res.render("profile.ejs", {
-                    array: details
+                
+                res.render("uploadProfilepic.ejs", {
+                    
                 });
             })
             .catch(err => {
@@ -488,7 +496,65 @@ app.get("/account/profile", (req, res) => {
         res.redirect("/login");
     }
 });
+// const iupload = multer({ dest: 'uploads/' });
+const iupload = multer({ dest: 'uploads/' });
 
+
+
+app.post('/submit', iupload.single('image'), async (req, res) => {
+    const userId = req.session.userId;
+
+    try {
+        const existingData = await userDetails.findOne({ _id: userId });
+
+        if (existingData) {
+            // Document with the same _id (userId) already exists, update it
+            existingData.image.data = fs.readFileSync(req.file.path);
+            existingData.image.contentType = req.file.mimetype;
+            await existingData.save();
+        } else {
+            // Create a new document
+            const newData = new userDetails({
+                _id: userId,
+                image: {
+                    data: fs.readFileSync(req.file.path),
+                    contentType: req.file.mimetype,
+                },
+            });
+            await newData.save();
+        }
+
+        res.redirect("/uploaded");
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+
+  
+// Display the image in your route
+app.get('/uploaded', async (req, res) => {
+    try {
+        const aluminiData = await userDetails.findOne({ _id: req.session.userId });
+
+        if (aluminiData && aluminiData.image && aluminiData.image.data) {
+            res.render('profile.ejs', { aluminiData });
+        } else {
+            res.render('profile.ejs', { aluminiData: null });
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+
+
+  
+  app.use('/images', express.static(path.join(__dirname, 'images')));
 // handeling user Contact Info route
 
 app.get("/userContact", (req, res) => {
