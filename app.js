@@ -479,12 +479,11 @@ app.get("/account", (req, res) => {
 });
 
 // handeling client profile page
-app.get("/account/profile", (req, res) => {
+app.get("/uploadimg", (req, res) => {
     if (req.session.isAuthorised) {
         userDetails.find({ _id: req.session.userId })
             .then(details => {
                 // console.log(details[0].Name)
-                
                 res.render("uploadProfilepic.ejs", {
                     
                 });
@@ -496,11 +495,10 @@ app.get("/account/profile", (req, res) => {
         res.redirect("/login");
     }
 });
+
+
 // const iupload = multer({ dest: 'uploads/' });
 const iupload = multer({ dest: 'uploads/' });
-
-
-
 app.post('/submit', iupload.single('image'), async (req, res) => {
     const userId = req.session.userId;
 
@@ -524,7 +522,7 @@ app.post('/submit', iupload.single('image'), async (req, res) => {
             await newData.save();
         }
 
-        res.redirect("/uploaded");
+        res.redirect("/account/profile");
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
@@ -536,20 +534,25 @@ app.post('/submit', iupload.single('image'), async (req, res) => {
 
   
 // Display the image in your route
-app.get('/uploaded', async (req, res) => {
-    try {
-        const aluminiData = await userDetails.findOne({ _id: req.session.userId });
+app.get('/account/profile', (req, res) => {
+    userDetails.findOne({ _id: req.session.userId })
+        .then((aluminiData) => {
+            // console.log(aluminiData.Name);
+            if (aluminiData && aluminiData.image && aluminiData.image.data) {
+                res.render('profile.ejs', { aluminiData });
+            } else {
+                res.render('profile.ejs', { aluminiData: null });
+            }
+        })
+        .catch((error) => {
+            // Log the error to the console
+            console.error(error);
 
-        if (aluminiData && aluminiData.image && aluminiData.image.data) {
-            res.render('profile.ejs', { aluminiData });
-        } else {
-            res.render('profile.ejs', { aluminiData: null });
-        }
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Internal Server Error');
-    }
+            // Send a 500 Internal Server Error response with an error message
+            res.status(500).send('Internal Server Error: Unable to retrieve user data');
+        });
 });
+
 
 
 
